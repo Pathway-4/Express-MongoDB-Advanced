@@ -11,9 +11,7 @@ const { notFound, errorHandling } = require("./src/middleware/error");
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(
-    "mongodb+srv://user-1:3z2Lkto2cm9joc9X@cluster0.ot49d9h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  );
+  await mongoose.connect(DB);
 
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
