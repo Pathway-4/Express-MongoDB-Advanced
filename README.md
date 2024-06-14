@@ -4,7 +4,7 @@ CRUD application using MongoDB and ExpressJS.
 
 ## Creating a CRUD application
 
-![alt text](image.png)
+![alt text](image-2.png)
 
 Here is the image fof the initial index.js file for my CRUD application.
 
@@ -12,4 +12,4 @@ Here is the image fof the initial index.js file for my CRUD application.
 
 This is the image of the application sucessfully working initially.
 
-## 
+##
