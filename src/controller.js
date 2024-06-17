@@ -2,16 +2,15 @@
 
 const User = require("./models");
 
-
-function Home(req, res, next) {
+function home(req, res, next) {
   res.status(200).json({ message: "Server is online." });
 }
 
 async function createUser(req, res, next) {
   try {
-    const { name, email, password, age, isActive, role } = req.body;
-    const User = new User({ name, email, age, isActive });
-    await User.save();
+    const { name, email, password, age } = req.body;
+    const user = new User({ name, email, password, age });
+    await user.save();
     res.status(200).json({ message: "User created successfully." });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -42,10 +41,9 @@ async function deactivate(req, res, next) {
 async function updateUser(req, res, next) {
   try {
     const { id } = req.params;
-    const { name, email, age, isActive } = req.body;
-    const user = await User.findByIdAndUpdate(id);
+    const { name, age, isActive } = req.body;
+    const user = await User.findById(id);
     user.name = name;
-    user.email = email;
     user.age = age;
     user.isActive = isActive;
     await user.save();
@@ -58,7 +56,7 @@ async function updateUser(req, res, next) {
 async function deleteUser(req, res, next) {
   try {
     const { id } = req.params;
-    const user = await User.findByIdAndDelete(id);
+    await User.findByIdAndDelete(id);
     res.status(200).json({ message: "User deleted successfully." });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -68,6 +66,7 @@ async function deleteUser(req, res, next) {
 // Error message functions
 
 module.exports = {
+  home,
   createUser,
   getUser,
   deactivate,

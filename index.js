@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3006;
 const DB = process.env.DB;
 const mongoose = require("mongoose");
 const { notFound, errorHandling } = require("./src/middleware/error");
+const router = require("./src/routes");
 
 main().catch((err) => console.log(err));
 
@@ -21,6 +22,8 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.json());
+
+app.use(router);
 app.use(notFound);
 app.use(errorHandling);
 

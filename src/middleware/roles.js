@@ -1,11 +1,8 @@
 "use strict";
 
-function role(requiredRole) {
+function role(requiredRoles) {
   return (req, res, next) => {
-    if (req.user.user.role === "admin") {
-      next();
-    }
-    if (req.user.user.role !== requiredRole) {
+    if (!requiredRoles.includes(req.user.user.role)) {
       return res.status(403).json({ message: "Forbidden" });
     }
     next();
